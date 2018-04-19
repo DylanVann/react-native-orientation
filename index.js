@@ -4,6 +4,7 @@ var DeviceEventEmitter = require('react-native').DeviceEventEmitter;
 var listeners = {};
 var orientationDidChangeEvent = 'orientationDidChange';
 var specificOrientationDidChangeEvent = 'specificOrientationDidChange';
+var sensorOrientationDidChangeEvent = 'sensorOrientationDidChangeEvent'
 
 var id = 0;
 var META = '__listener_id';
@@ -63,9 +64,9 @@ module.exports = {
       });
   },
 
-  addSensorBaseOrientationListener(cb) {
+  addSensorBasedOrientationListener(cb) {
     var key = getKey(cb);
-    listeners[key] = DeviceEventEmitter.addListener("sensorOrientationChangeEvent",
+    listeners[key] = DeviceEventEmitter.addListener(sensorOrientationDidChangeEvent,
       (body) => {
         cb(body.orientation);
       });
